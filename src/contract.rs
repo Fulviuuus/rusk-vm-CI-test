@@ -8,6 +8,7 @@ use crate::module_config::ModuleConfig;
 use crate::VMError;
 use canonical::Canon;
 use canonical_derive::Canon;
+use std::path::Path;
 
 pub use dusk_abi::{ContractId, ContractState};
 
@@ -46,13 +47,11 @@ impl Contract {
         &mut self.state
     }
 
-    pub(crate) fn instrument(mut self) -> Result<Self, VMError> {
-        self.code = ModuleConfig::new()
-            .with_grow_cost()
-            .with_forbidden_floats()
-            .with_metering()
-            .with_table_size_limit()
-            .apply(&self.code[..])?;
+    pub(crate) fn instrument(
+        mut self,
+        config_file: &Path,
+    ) -> Result<Self, VMError> {
+        self.code = ModuleConfig::new(config_file)?.apply(&self.code[..])?;
 
         Ok(self)
     }

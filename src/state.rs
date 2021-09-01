@@ -7,6 +7,7 @@
 use std::cell::RefCell;
 use std::collections::HashMap;
 use std::ops::{Deref, DerefMut};
+use std::path::Path;
 use std::rc::Rc;
 
 use canonical::{Canon, CanonError, Sink, Source, Store};
@@ -96,13 +97,16 @@ impl NetworkState {
     /// Deploys a contract to the state with the given id / address
     pub fn deploy_with_id(
         &mut self,
-        id: ContractId,
+        contract_id: ContractId,
         contract: Contract,
     ) -> Result<ContractId, VMError> {
         self.contracts
-            .insert(id, contract.instrument()?)
+            .insert(
+                contract_id,
+                contract.instrument(Path::new("module_config.toml"))?,
+            )
             .map_err(VMError::from_store_error)?;
-        Ok(id)
+        Ok(contract_id)
     }
 
     /// Returns a reference to the specified contracts state
