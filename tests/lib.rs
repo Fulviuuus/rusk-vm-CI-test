@@ -445,7 +445,10 @@ fn gas_consumed_host_function_works() {
         .expect("Query error");
 
     assert_eq!(gas_left + gas.spent(), 1_000_000_000,
-        "The gas left {} + the gas spent {} should be equal to the initial gas provided = 1_000_000_000", gas_left, gas.spent());
+        "The gas left plus the gas spent should be equal to the initial gas provided
+        gas_left = {}, gas_consumed = {}
+        gas.spent() = {}, gas.gas_left() = {}, gas.left() = {}\n",
+        gas_left, gas_consumed, gas.spent(), gas.gas_left(), gas.left());
 
     assert_eq!(
         gas.spent() - gas_consumed,
