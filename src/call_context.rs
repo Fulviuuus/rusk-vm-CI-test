@@ -4,6 +4,8 @@
 //
 // Copyright (c) DUSK NETWORK. All rights reserved.
 
+// just a change to trigger CI
+//
 use canonical::{Canon, CanonError, Sink, Source};
 use dusk_abi::{ContractState, Query, ReturnValue, Transaction};
 
