@@ -141,7 +141,7 @@ impl NetworkState {
         self.block_height
     }
 
-    /// Queryn the contract at address `target`
+    /// Query the contract at address `target`
     pub fn query<A, R>(
         &mut self,
         target: ContractId,
