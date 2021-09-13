@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/dusk-network/rusk-vm.svg?token=h3rscYNqTnqYVQKspVPT&branch=master)](https://travis-ci.com/dusk-network/rusk-vm)
 
-# Rust WASM Virtual Machine
+# Rust WASM Virtual Machine!
 
 ## Usage
 
